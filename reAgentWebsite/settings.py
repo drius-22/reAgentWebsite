@@ -154,7 +154,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Aws Settings
 AWS_ACCESS_KEY_ID = 'AKIAWB2NL2KBVTP2KULB'  
 AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'realestate-sandra-agent'
+AWS_STORAGE_BUCKET_NAME = 're-agent-website'
 
 # AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
