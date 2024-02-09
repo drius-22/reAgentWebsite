@@ -1,0 +1,405 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+{% endblock %} 
+{% block head_title %}Propiedad{% endblock %} 
+{% block content %}
+      <!-- Breadcrumbs--> 
+      <section class="breadcrumbs-custom bg-image context-dark" data-opacity="37"   style="background-image: url('{% static 'images/breadcrumbs-bg-09-1920x420.jpg' %}' ); " >
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title"> {{property.address}} </h2>
+        </div>
+      </section>
+      <section class="section-xs bg-white">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="{% url 'home_page'%}">Página Principal</a></li>
+            <li><a href="#">Propiedades</a></li>
+            <li class="active">{{property.address}} </li>
+          </ul>
+        </div>
+      </section>
+      <div class="divider-section"></div>
+      <section class="section section-md bg-gray-12">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-lg-7 col-xl-8">
+              <!-- Slick Carousel-->
+              <div class="slick-slider-1">
+                <div class="slick-slider-price"> $ {{property.price}} </div>
+                <div class="slick-slider carousel-parent" id="parent-carousel" data-arrows="true" data-loop="true" data-dots="false" data-swipe="true" data-fade="true" data-items="1" data-child="#child-carousel" data-for="#child-carousel">
+                  
+                    {% for imageProperty in property.get_property_images %}
+                        <div class="item"><img src="{{ imageProperty.img.url }}" alt="" width="763" height="443"/>
+                        </div>
+                     {% endfor %}
+                 
+                </div>
+                <div class="slick-slider carousel-child" id="child-carousel" data-arrows="true" data-loop="true" data-dots="false" data-swipe="true" data-items="1" data-sm-items="3" data-md-items="4" data-lg-items="4" data-xl-items="5" data-slide-to-scroll="1" data-for="#parent-carousel">
+                  
+                    {% for imageProperty in property.get_property_images %}
+                  <div>
+                    <div class="slick-slide-inner" style="background-image: url( '{{ imageProperty.img.url }}' );"></div>
+                  </div>
+                  {% endfor %}
+
+                  
+                </div>
+              </div>
+              <div class="features-block">
+                <div class="features-block-inner">
+                  <div class="features-block-item">
+                    <ul class="features-block-list">
+                      <li><span class="icon hotel-icon-10"></span><span>{{ property.n_bathrooms }} Baños</span></li>
+                      <li><span class="icon hotel-icon-05"></span><span>{{ property.n_bedrooms }} Habitaciónes</span></li>
+                      <li><span class="icon mdi mdi-vector-square"></span><span>{{ property.size }} m<sup>2</sup></span></li>
+                      <li><span class="icon hotel-icon-26"></span><span>{{ property.n_garages }} Garaje(s)</span></li>
+                    </ul>
+                  </div>
+                  {% comment %}
+                  <div class="features-block-item"><a class="link link-1" href="#"><span class="icon mdi mdi-heart-outline"></span>Add to Favorites</a></div>
+                  {% endcomment %} 
+                </div>
+              </div>
+              <p>{{ property.description }}</p>
+              
+              <!-- Bootstrap collapse-->
+              <div class="card-group-custom card-group-corporate" id="accordion1" role="tablist" aria-multiselectable="false">
+                <!-- Bootstrap card-->
+                <article class="card card-custom card-corporate">
+                  <div class="card-header" id="accordion1-heading-1" role="tab">
+                    <div class="card-title"><a class="card-link" role="button" data-toggle="collapse" href="#accordion1-collapse-1" aria-controls="accordion1-collapse-1" aria-expanded="true"><span>Dirección</span>
+                        <div class="card-arrow"></div></a></div>
+                  </div>
+                  <div class="collapse show" id="accordion1-collapse-1" role="tabpanel" aria-labelledby="accordion1-heading-1" data-parent="#accordion1">
+                    <div class="card-body">
+                      <div class="layout-1">
+                        <dl class="list-terms-inline">
+                            <dt>Direción:</dt>
+                            <dd>{{ property.address }}</dd>
+                        </dl>
+                        <dl class="list-terms-inline">
+                            <dt>Provincia</dt>
+                            <dd>{{ property.location.province }}</dd>
+                        </dl>
+                        <dl class="list-terms-inline">
+                            <dt>Ciudad:</dt>
+                            <dd>{{ property.location.city }}</dd>
+                        </dl>
+                        <dl class="list-terms-inline">
+                            <dt>Codigo Postal:</dt>
+                            <dd>{{ property.postal_code }}</dd>
+                        </dl>
+                        <dl class="list-terms-inline">
+                            <dt>País:</dt>
+                            <dd>{{ property.location.country }}</dd>
+                        </dl>
+                        <dl class="list-terms-inline">
+                            <dt>Area:</dt>
+                            <dd>{{ property.area }}</dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <!-- Bootstrap collapse-->
+              <div class="card-group-custom card-group-corporate" id="accordion2" role="tablist" aria-multiselectable="false">
+                <!-- Bootstrap card-->
+                <article class="card card-custom card-corporate">
+                  <div class="card-header" id="accordion2-heading-1" role="tab">
+                    <div class="card-title"><a class="card-link" role="button" data-toggle="collapse" href="#accordion2-collapse-1" aria-controls="accordion2-collapse-1" aria-expanded="true"><span>Amenidades</span>
+                        <div class="card-arrow"></div></a></div>
+                  </div>
+                  <div class="collapse show" id="accordion2-collapse-1" role="tabpanel" aria-labelledby="accordion2-heading-1" data-parent="#accordion2">
+                    <div class="card-body">
+                      <ul class="list-marked-2 layout-2">
+                        {% for feature in features %}
+                        <li>{{feature}}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              {% if property.is_there_virtual_tour %}
+                <!-- Bootstrap collapse-->
+                <div class="card-group-custom card-group-corporate" id="accordion3" role="tablist" aria-multiselectable="false">
+                  <!-- Bootstrap card-->
+                  <article class="card card-custom card-corporate">
+
+                    <div class="card-header" id="accordion3-heading-1" role="tab">
+                      <div class="card-title"><a class="card-link" role="button" data-toggle="collapse" href="#accordion3-collapse-1" aria-controls="accordion3-collapse-1" aria-expanded="true"><span>Tour Virtual</span>
+                          <div class="card-arrow"></div></a></div>
+                    </div>
+                    <div class="collapse show" id="accordion3-collapse-1" role="tabpanel" aria-labelledby="accordion3-heading-1" data-parent="#accordion3">
+                      
+                      
+                      <iframe width="100%" height="600" allow="autoplay; gyroscope; accelerometer" src="{{property.virtualtour_link}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+                    
+                    </div>
+
+                  </article>
+                </div>
+              {% endif %}
+
+              <div class="block-group-item">
+                <h3>Mapa de la propiedad</h3>
+                <div class="google-map-container mt-20" data-center="{{property.get_string_map_property}}" data-icon="{% static 'images/gmap_marker_mini.png' %}" data-icon-active="{% static 'images/gmap_marker_mini_active.png' %}" data-styles="[{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;geometry&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#e9e9e9&quot;},{&quot;lightness&quot;:17}]},{&quot;featureType&quot;:&quot;landscape&quot;,&quot;elementType&quot;:&quot;geometry&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#f5f5f5&quot;},{&quot;lightness&quot;:20}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#ffffff&quot;},{&quot;lightness&quot;:17}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.stroke&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#ffffff&quot;},{&quot;lightness&quot;:29},{&quot;weight&quot;:0.2}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;elementType&quot;:&quot;geometry&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#ffffff&quot;},{&quot;lightness&quot;:18}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;elementType&quot;:&quot;geometry&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#ffffff&quot;},{&quot;lightness&quot;:16}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;elementType&quot;:&quot;geometry&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#f5f5f5&quot;},{&quot;lightness&quot;:21}]},{&quot;featureType&quot;:&quot;poi.park&quot;,&quot;elementType&quot;:&quot;geometry&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#dedede&quot;},{&quot;lightness&quot;:21}]},{&quot;elementType&quot;:&quot;labels.text.stroke&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;},{&quot;color&quot;:&quot;#ffffff&quot;},{&quot;lightness&quot;:16}]},{&quot;elementType&quot;:&quot;labels.text.fill&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:36},{&quot;color&quot;:&quot;#333333&quot;},{&quot;lightness&quot;:40}]},{&quot;elementType&quot;:&quot;labels.icon&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;elementType&quot;:&quot;geometry&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#f2f2f2&quot;},{&quot;lightness&quot;:19}]},{&quot;featureType&quot;:&quot;administrative&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#fefefe&quot;},{&quot;lightness&quot;:20}]},{&quot;featureType&quot;:&quot;administrative&quot;,&quot;elementType&quot;:&quot;geometry.stroke&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#fefefe&quot;},{&quot;lightness&quot;:17},{&quot;weight&quot;:1.2}]}]" data-zoom="5">
+                  
+                    <div class="mapouter">
+                        <div class="gmap_canvas">
+                          <iframe title= 'property location' width="100%" style="min-height:400px;" id="gmap_canvas" src="{{property.get_string_map_property}}" ></iframe>
+                        </div>
+                    </div>
+                    <!-- <div class="google-map google-map-1"></div>
+                  <ul class="google-map-markers">
+                    <li data-location="9870 St Vincent Place, Glasgow" data-description="9870 St Vincent Place, Glasgow, DC 45 Fr 45."></li>
+                  </ul> -->
+                </div>
+              </div>
+              <!-- Post Share and Links-->
+              <div class="blog-post-solo-footer mt-20">
+                <div class="blog-post-solo-footer-left">
+                  <ul class="blog-post-solo-footer-list">
+                    <li><span class="icon mdi mdi-clock"></span><a href="#">{{property.date_posted}}</a></li>
+                  </ul>
+                </div>
+                <div class="blog-post-solo-footer-right">
+                  <ul class="blog-post-solo-footer-list-1">
+                    <li><span>Comparte con tus amigos </span></li>
+                    <li>
+                      <ul class="list-inline-1">
+                        <li><a class="icon link-default fa-facebook" href="https://www.facebook.com/profile.php?id=100071050852459"></a></li>
+                        <li><a class="icon link-default fa-twitter" href="#"></a></li>
+                        <li><a class="icon link-default fa-google-plus" href="#"></a></li>
+                        <li><a class="icon link-default fa-pinterest-p" href="#"></a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mt-35 mt-md-50 mt-lg-60">
+                <article class="block-person">
+                  <div class="block-person-left"><img src="{% static 'images/sandra_img.jpg' %}" alt="image of agent" width="650" height="756"/>
+                  </div>
+                  <div class="block-person-body">
+                    <h3 class="block-person-title">Elizabeth Peña</h3>
+                    <p class="block-person-cite">Agente de Bienes Raíces</p>
+                    <ul class="block-person-list">
+                      <li>
+                        <div class="block-person-link"><span class="icon mdi mdi-phone"></span><a href="tel:#">099-662-1358</a></div>
+                      </li>
+                      <li>
+                        <div class="block-person-link"><span class="icon mdi mdi-email-outline"></span><a class="text-spacing-50" href="mailto:#">info@viviendas.art</a></div>
+                      </li>
+                      <li>
+                        <ul class="list-inline-1">
+                          <li><a class="icon fa-facebook" href="#"></a></li>
+                          <li><a class="icon fa-twitter" href="#"></a></li>
+                          <li><a class="icon fa-google-plus" href="#"></a></li>
+                          <li><a class="icon fa-pinterest-p" href="#"></a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                    <p>Estoy para cualquier inquietud acerca de bienes raíces. ¡ No dude en llamarme o dejarme un mensaje ! <p><a class="button button-primary" href="{% url 'contact_us'%}"> Contáctanos </a>
+                  </div>
+                </article>
+              </div>
+              <div class="block-group-item">
+                <h3>Propiedades similares</h3>
+                <div class="row row-50 mt-10">
+                {% for last_property in last_three%}
+
+                  <div class="col-md-6 col-lg-12 col-xl-6">
+                    <!-- Product Classic-->
+                    <article class="product-classic">
+                      <div class="product-classic-media">
+                        <div class="owl-carousel" data-items="1" data-nav="true" data-stage-padding="0" data-loop="false" data-margin="0" data-mouse-drag="false">
+                            
+                            {%for property_image in last_property.get_property_images%}
+                                <img src="{{ property_image.img.url}}" style="max-height: 180px;" alt="Casa" />
+                            {% endfor %}
+                        </div>
+                        <div class="product-classic-price"><span>${{last_property.price}}</span></div>
+                      </div>
+                      <h4 class="product-classic-title"><a href="{% url 'buildings:property_view' pk=last_property.pk %}">{{last_property.address}}</a></h4>
+                      <div class="product-classic-divider"></div>
+                      <ul class="product-classic-list">
+                        <li><span class="icon mdi mdi-vector-square"></span><span>{{last_property.size}} m<sup>2</sup> </span></li>
+                        <li><span class="icon hotel-icon-10"></span><span>{{last_property.n_bathrooms}} Baño(s)</span></li>
+                        <li><span class="icon hotel-icon-05"></span><span>{{last_property.n_bedrooms}} Dormitorio(s)</span></li>
+                        <li><span class="icon hotel-icon-26"></span><span>{{last_property.n_garages}} Garage(s)</span></li>
+                      </ul>
+                    </article>
+                  </div>
+                  {% endfor %}
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-5 col-xl-4">
+              <div class="row row-50">
+                
+                <div class="col-md-6 col-lg-12">
+                  <article class="block-callboard">
+                    <div class="block-callboard-body">
+                      <h3 class="block-callboard-title">Solicitar una visita</h3>
+                      <!-- RD Mailform-->
+                      <form class="rd-form rd-mailform" id='request_form'>
+                        {% csrf_token %}
+                        <div class="row row-20">
+
+                          {{ form.non_field_errors }}
+                          <div class="col-12">
+                            <div class="form-wrap">
+                              {{ form.request_name.errors }}
+                              <label for="{{ form.request_name.id_for_label }}" style='color:white;'>Nombre :</label>
+                              {{ form.request_name }}
+                            </div>
+                          </div>
+
+                          <div class="col-12">
+                            <div class="form-wrap">
+                              {{ form.request_email.errors }}
+                              <label for="{{ form.request_email.id_for_label }}" style='color:white;'>Correo electrónico :</label>
+                              {{ form.request_email }}
+                            </div>
+                          </div>
+
+                          <div class="col-12">
+                            <div class="form-wrap">
+                              {{ form.request_phone.errors }}
+                              <label for="{{ form.request_phone.id_for_label }}" style='color:white;'>Número de teléfono  :</label>
+                              {{ form.request_phone }}
+                            </div>
+                          </div>
+
+                          <div class="col-12">
+                            <div class="form-wrap">
+                              {{ form.request_message.errors }}
+                              <label for="{{ form.request_message.id_for_label }}" style='color:white;'>Mensaje :</label>
+                              {{ form.request_message }}
+                            </div>
+                          </div>
+
+
+                          <div class="col-12">
+                            <button class="button button-block button-secondary" type="submit">Enviar Mensaje</button>
+                          </div>
+                        </div>
+
+                      </form>
+
+                      <div id='msg'> 
+                      </di>
+
+                      
+      
+                    
+
+
+                    </div>
+                  </article>
+                </div>
+                <div class="col-md-6 col-lg-12">
+                  <div class="block-info bg-default">
+                    <h3>Calculadora de hipoteca</h3>
+                    <form class="rd-mailform form-select" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                      <div class="form-wrap">
+                        <input class="form-input" id="contact-1-name" type="text" name="name" data-constraints="@Required">
+                        <label class="form-label" for="contact-1-name">Valor de la vivienda</label>
+                      </div>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" data-style="modern" data-placeholder="Monto del préstamo" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="2">50000</option>
+                          <option value="3">100000</option>
+                          <option value="4">200000</option>
+                          <option value="5">500000</option>
+                          <option value="6">1000000</option>
+                          <option value="7">1500000</option>
+                        </select>
+                      </div>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" data-style="modern" data-placeholder="Término (años)" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="2">10</option>
+                          <option value="3">15</option>
+                          <option value="4">20</option>
+                          <option value="5">25</option>
+                          <option value="6">30</option>
+                          <option value="7">40</option>
+                        </select>
+                      </div>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" data-style="modern" data-placeholder="Tasa de interés en % " data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="2">0.1%</option>
+                          <option value="3">0.3%</option>
+                          <option value="4">0.5%</option>
+                          <option value="5">0.7%</option>
+                          <option value="6">0.9%</option>
+                          <option value="7">1%</option>
+                        </select>
+                      </div>
+                      <ul class="form-wrap-list">
+                        <li>Monto financiado: <span>0</span>
+                        </li>
+                        <li>Pagos hipotecarios: <span>0</span>
+                        </li>
+                        <li>Costo anual del préstamo: <span>0</span>
+                        </li>
+                      </ul>
+                      <div class="form-button">
+                        <button class="button button-block button-secondary" type="submit">Calcular</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}
+
+{% block javascript %}
+<script>
+  /*
+        On submiting the form, send the POST ajax
+        request to server and after successfull submission
+        display the object.
+    */
+    $("#request_form").submit(function (e) {
+        // preventing from page reload and default actions
+        e.preventDefault();
+        // serialize the data for sending the form data.
+        var serializedData = $(this).serialize();
+        // make POST ajax call
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'buildings:contact_agent' %}",
+            data: serializedData,
+            success: function (response) {
+                // on successfull creating object
+                // 1. clear the form.
+                $("#request_form").trigger('reset');
+                document.getElementById("msg").innerHTML ='</br><div class="alert alert-success alert-dismissible" > <strong> Mensaje Enviado </strong> </div>';
+
+            },
+            error: function (response) {
+                // alert the error if any error occured
+                document.getElementById("msg").innerHTML ='</br><div class="alert alert-warning alert-dismissible" > <strong> Mensaje no pudo ser enviado.  </strong> </div>';
+
+                alert(response["responseJSON"]["error"]);
+            }
+        })
+    })
+
+</script>
+
+{% endblock  %}

@@ -1,0 +1,283 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+{% endblock %} 
+{% block head_title %}Sandra Elizabeth{% endblock %} 
+{% block content %}
+<!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image context-dark" data-opacity="37" style="background-image: url(images/breadcrumbs-bg-06-1922x427.jpg);">
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title">Lista de Propiedades</h2>
+        </div>
+      </section>
+      <section class="section-xs bg-white">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="{%  url 'home_page' %}">Página principal</a></li>
+            <li class="active" ><a href="#">Propiedades</a></li>            
+          </ul>
+        </div>
+      </section>
+      <div class="divider-section"></div>
+      <!-- Properties List-->
+      <section class="section section-md bg-gray-12">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-lg-7 col-xl-8">
+              <div class="row row-30">
+                <div class="col-sm-12">
+                  <ul class="block-info-1">
+               
+                    <li>
+                      <div class="form-wrap-group-1">
+                      
+                        <div class="form-wrap">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Precio" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                            <option label="placeholder"></option>
+                            <option value="1">menor a mayor</option>
+                            <option value="2">mayor a menor</option>
+                          </select>
+                        </div>
+                     
+
+                        
+                      </div>
+                    </li>
+              
+                    <li>
+                      <ul class="list-layout">
+                        <div class="layout-4-item">
+                          <ul class="list-inline-bordered heading-7">
+                            <li><a href="#">En Renta</a></li>
+                            <li><a href="#">En Venta</a></li>
+                          </ul>
+                        </div>
+                        
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-12">
+                  <div class="row row-50 row-lg-70">
+                  {% for propertyE in properties %}
+                    <div class="col-12">
+                      <article class="product-classic product-classic-horizontal">
+                        <div class="product-classic-inner">
+                          <div class="product-classic-left">
+                            <div class="product-classic-media">
+                              <div class="owl-carousel" data-items="1" data-nav="true" data-stage-padding="0" data-loop="true" data-margin="0" data-mouse-drag="false">
+                                  {% for imageProperty in propertyE.get_property_images %}
+                                    <img src="{{ imageProperty.img.url }}" alt="" width="480" height="287"/>
+                                  {% endfor %}
+                              </div>
+                              <div class="product-classic-price"><span>${{ propertyE.price }}</span></div>
+                            </div>
+                          </div>
+                          <div class="product-classic-right">
+                            <h4 class="product-classic-title"><a href="{% url 'buildings:property_view' pk=propertyE.pk %}">{{ propertyE.address }} , {{ propertyE.location.city.name }}</a></h4>
+                            <div class="product-classic-divider"></div>
+                            <div class="product-classic-text">
+                              <p>{{ propertyE.description|truncatewords:50}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="product-classic-footer">
+                          <ul class="product-classic-list">
+                            <li><span class="icon hotel-icon-10"></span><span>{{ propertyE.n_bathrooms}}</span></li>
+                            <li><span class="icon hotel-icon-05"></span><span>{{ propertyE.n_bedrooms}}</span></li>
+                            <li><span class="icon mdi mdi-vector-square"></span><span>{{ propertyE.size}} [ m ] <sup>2</sup> </span></li>
+                            <li><span class="icon hotel-icon-26"></span><span>{{ propertyE.n_garages}}</span></li>
+                          </ul>
+                        </div>
+                      </article>
+                    </div>
+                  {% endfor %}
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <ul class="pagination-custom">
+                    <li><a class="active" href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 col-xl-4">
+              <div class="row row-50">
+                <div class="col-md-6 col-lg-12">
+                  <div class="block-info">
+                    <h3>Encuentra tu propiedad</h3>
+                    <form class="rd-mailform form-select" name="search-property-location"   method="post" action="{% url 'buildings:search_properties'%}">
+                      {% csrf_token %}
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" name="search-property-location" data-style="modern" data-placeholder="Choose Location" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          
+                          {% for location in all_locations %}
+                            <option value="{{ location.pk }}"> {{ location }} </option>
+                          {% endfor %}
+
+
+                        </select><span class="select-arrow"></span>
+                      </div>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter"  name="search-property-status"  data-style="modern" data-placeholder="Modalidad" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="venta">En Venta</option>
+                          <option value="compra">En Renta</option>
+                          <option value="all">Todas las propiedades</option>
+                        </select><span class="select-arrow"></span>
+                      </div>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter"  name="search-property-type"  data-style="modern" data-placeholder="Tipo de Propiedad" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="departamento">Apartamento</option>
+                          <option value="casa">Casa</option>
+                          <option value="terreno">Terreno</option>
+                        </select><span class="select-arrow"></span>
+                      </div>
+                      <div class="form-wrap-group">
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Precio Min" data-minimum-results-for-search="Infinity" >
+                            <option label="placeholder"></option>
+                            <option value="2">100 $</option>
+                            <option value="3">200 $</option>
+                            <option value="4">300 $</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Precio Max" data-minimum-results-for-search="Infinity" >
+                            <option label="placeholder"></option>
+                            <option value="2">1000 $</option>
+                            <option value="3">2000 $</option>
+                            <option value="4">3000 $</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                      </div>
+                      <div class="form-wrap-group">
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" name="search-property-bedrooms" data-style="modern" data-placeholder="Cuartos Min" data-minimum-results-for-search="Infinity" >
+                            <option label="placeholder"></option>
+                            <option value="2">1</option>
+                            <option value="3">2</option>
+                            <option value="4">3</option>
+                            <option value="4">4</option>
+                            <option value="4">5+</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Cuartos Max" data-minimum-results-for-search="Infinity" >
+                            <option label="placeholder"></option>
+                            <option value="2">1</option>
+                            <option value="3">2</option>
+                            <option value="4">3</option>
+                            <option value="4">4</option>
+                            <option value="4">5+</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                      </div>
+                      <div class="form-wrap-group">
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" name="search-property-bathrooms" data-style="modern" data-placeholder="Baños Min" data-minimum-results-for-search="Infinity">
+                            <option label="placeholder"></option>
+                            <option value="2">1</option>
+                            <option value="3">2</option>
+                            
+                          </select><span class="select-arrow"></span>
+                        </div>
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Baños Max" data-minimum-results-for-search="Infinity" >
+                            <option label="placeholder"></option>
+                            <option value="2">1</option>
+                            <option value="3">2</option>
+                            <option value="4">3+</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                      </div>
+                      <div class="form-button">
+                        <button class="button button-block button-secondary" type="submit">Buscar</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-12">
+                  <article class="block-callboard">
+                    <div class="block-callboard-body">
+                      <h3 class="block-callboard-title">Obtenga una consulta gratuita</h3>
+                      <div class="block-callboard-divider"></div>
+                      <div class="block-callboard-text">
+                        <p>Si tiene alguna pregunta, simplemente llámenos o envíenos un correo electrónico y le responderemos en breve.</p>
+                      </div>
+                      <ul class="block-callboard-list">
+                        <li>
+                          <div class="block-callboard-tell"><a href="tel:#">+ 593 99 662 1358</a></div>
+                        </li>
+                        <li>
+                          <div class="block-callboard-mail"><a href="mailto:#">info@viviendas.art</a></div>
+                        </li>
+                      </ul><a class="button button-block button-secondary" href="contact-us.html">Contáctanos</a>
+                    </div>
+                  </article>
+                </div>
+                <div class="col-md-6 col-lg-12">
+                  <div class="block-info bg-default">
+                    <h3>Calculadora de hipoteca</h3>
+                    <form class="rd-mailform form-select" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                      <div class="form-wrap">
+                        <input class="form-input" id="contact-1-name" type="text" name="name" data-constraints="@Required">
+                        <label class="form-label" for="contact-1-name">Valor de la vivienda</label>
+                      </div>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" data-style="modern" data-placeholder="Loan Amount" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="2">50000</option>
+                          <option value="3">100000</option>
+                          <option value="4">200000</option>
+                          <option value="5">500000</option>
+                          <option value="6">1000000</option>
+                          <option value="7">1500000</option>
+                        </select>
+                      </div>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" data-style="modern" data-placeholder="Term (Years)" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="2">10</option>
+                          <option value="3">15</option>
+                          <option value="4">20</option>
+                          <option value="5">25</option>
+                          <option value="6">30</option>
+                          <option value="7">40</option>
+                        </select>
+                      </div>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" data-style="modern" data-placeholder="Interest Rate in %" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="2">0.1%</option>
+                          <option value="3">0.3%</option>
+                          <option value="4">0.5%</option>
+                          <option value="5">0.7%</option>
+                          <option value="6">0.9%</option>
+                          <option value="7">1%</option>
+                        </select>
+                      </div>
+                      <ul class="form-wrap-list">
+                        <li>Monto financiado: <span>0</span>
+                        </li>
+                        <li>Pagos hipotecarios: <span>0</span>
+                        </li>
+                        <li>Costo anual del préstamo: <span>0</span>
+                        </li>
+                      </ul>
+                      <div class="form-button">
+                        <button class="button button-block button-secondary" type="submit">Calcular</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}

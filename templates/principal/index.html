@@ -1,0 +1,608 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+    <link href="{% static 'css/home_style.css'%}?20090712" rel="stylesheet" type="text/css"> 
+{% endblock %} 
+{% block head_title %}Viviendas{% endblock %} 
+{% block content %}
+
+<!-- FScreen-->
+<script type='text/javascript'>
+  $(document).ready(function() {
+     //option A
+     $("form").submit(function(e){
+         alert('submit intercepted');
+         e.preventDefault(e);
+     });
+ });
+ </script>
+  
+    <section class="section">
+        <div class="range">
+          <div class="cell-xl-6_lg box-1-cell height-fill context-dark">
+            <div class="box-1-bg-shape"><img class="box-1-bg-image" src="{% static 'images/bg-shape-1.svg' %}" alt="" role="presentation"></div>
+            <div class="cell-inner box-1-outer">
+              <div class="box-1">
+                <h2>Encuentra tu propiedad</h2>
+                <form class="rd-form" action="{% url 'buildings:search_properties'%}" method="POST">
+                  {% csrf_token %}
+                  <div class="row row-x-20 row-20">
+                    <div class="col-sm-6 col-lg-12 col-xl-6">
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" name="search-property-location" id="property-location" data-style="modern" data-class="select-dropdown-context-dark" data-placeholder="Ubicación" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+
+
+                          {% if all_locations %}
+
+                            {% for location in all_locations %}
+                              <option value="{{ location.pk }}"> {{ location }} </option>
+                            {% endfor %}
+                          {% else %}
+                              <option value="#"> No Exiten Propiedades </option>
+
+                          {% endif %}
+
+                        </select><span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" name="search-property-type" id='property-type' data-style="modern" data-class="select-dropdown-context-dark" data-placeholder="Tipo de propiedad" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="departamento">Apartamento</option>
+                          <option value="casa">Casa</option>
+                          <option value="terreno">Terreno</option>
+                        </select><span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-sm-4 col-lg-6 col-xl-4">
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" name="search-property-status" id='property-status' data-style="modern" data-class="select-dropdown-context-dark" data-placeholder="Modalidad" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="venta">En Venta</option>
+                          <option value="renta">En Renta</option>
+                        </select><span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-sm-4 col-lg-6 col-xl-4">
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" name="search-property-bathrooms" id="n_baths" data-style="modern" data-class="select-dropdown-context-dark" data-placeholder="Baños" data-minimum-results-for-search="Infinity" >
+                          <option label="placeholder"></option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-4 col-lg-6 col-xl-4">
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" name="search-property-bedrooms" id="n_beds" data-style="modern" data-class="select-dropdown-context-dark" data-placeholder="Dormitorios" data-minimum-results-for-search="Infinity" >
+                          <option label="placeholder"></option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="rd-range-outer">
+                    <p class="rd-range-caption">Rango de precios ($)</p>
+                    <!-- RD Range-->
+                    <div class="rd-range" data-min="50" data-max="1000000" data-start="[50, 500000]" data-step="100" data-tooltip="true" data-min-diff="100"></div>
+                   
+                  </div>
+                  <div class="rd-range-outer">
+                    <p class="rd-range-caption">Area (Metros cuadrados)</p>
+                    <!-- RD Range-->
+                    <div class="rd-range" data-min="70" data-max="20000" data-start="[70, 20000]" data-step="10" data-tooltip="true" data-min-diff="100"></div>
+                  </div>
+                  <div class="layout-5">
+                    <div class="layout-5-item layout-5-item_primary">
+                      <div class="panel-3" id="panel-3">
+                        <div class="panel-3-header" data-multitoggle="#panel-3">
+                          <div class="panel-3-toggle"></div>
+                          <p class="panel-3-title">Buscar ciertas características</p>
+                        </div>
+                        <div class="panel-3-content">
+                          <div class="panel-3-content-inner">
+                            <ul class="list-inline list-inline-sm">
+                              <li>
+                                <label class="checkbox-inline">
+                                  <input name="amenities-1" value="Calefacción" type="checkbox">Calefacción
+                                </label>
+                              </li>
+                              <li>
+                                <label class="checkbox-inline">
+                                  <input name="amenities-2" value="Piscina" type="checkbox">Piscina
+                                </label>
+                              </li>
+                              <li>
+                                <label class="checkbox-inline">
+                                  <input name="amenities-3" value="Patio" type="checkbox">Patio
+                                </label>
+                              </li>
+                              <li>
+                                <label class="checkbox-inline">
+                                  <input name="amenities-4" value="Wi-Fi" type="checkbox">Wi-Fi
+                                </label>
+                              </li>
+                              <li>
+                                <label class="checkbox-inline">
+                                  <input name="amenities-5" value="Gimnasio" type="checkbox">Gimnasio
+                                </label>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="layout-5-item">
+                      <button type="submit" class="button button-secondary-outline" style="min-width: 150px;">Buscar</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="cell-xl-6_sm height-fill">
+            <div class="box-2">
+              <!-- Owl Carousel-->
+              <div class="owl-carousel" data-items="1" data-sm-items="2" data-lg-items="1" data-xl-items="2" data-dots="false" data-nav="false" data-nav-custom="#owl-outer-nav" data-loop="true" data-margin="30" data-autoplay="true" data-autoplay-speed="3500" data-stage-padding="0" data-mouse-drag="false">
+                {% if properties %}
+                  {% for propertyE in properties.all|slice:"0:2" %}
+                    <a class="product-corporate context-dark" href="{% url 'buildings:property_view' propertyE.pk %}" style="background-image: url('{{propertyE.get_principal_images.img.url}}');">
+                      <div class="product-corporate-inner">
+                        <div class="product-corporate-caption">
+                          <h3 class="product-corporate-title">{{propertyE.get_fromatted_address}}</h3>
+                          <h4 class="product-corporate-info">{{propertyE.n_bedrooms}} cuarto, ${{propertyE.price}}</h4>
+                        </div>
+                      </div>
+                    </a>
+                  {% endfor %}
+                {% endif %}
+              </div>
+              <div class="box-2-footer">
+                <div class="box-2-footer-inner">
+                  <h3>Propiedades Recientes</h3>
+                  <div class="owl-outer-nav" id="owl-outer-nav">
+                    <button class="owl-arrow owl-arrow-prev"><span class="icon fl-budicons-free-left161"></span><span>Anterior</span></button>
+                    <button class="owl-arrow owl-arrow-next"><span>Siguiente</span><span class="icon fl-budicons-free-right163"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Icon List-->
+      <section class="section section-lg bg-default">
+        <div class="container">
+          <div class="row row-30">
+            <div class="col-md-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern"><span class="icon box-modern-icon fl-bigmug-line-big104"></span>
+                <div class="box-modern-main">
+                  <h4 class="box-modern-title">Varias propiedades</h4>
+                  <p>Tenemos propiedades en multiples ubicaciones alrededor de Ecuador, disponibles para su compra o renta.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern"><span class="icon box-modern-icon fl-bigmug-line-wallet26"></span>
+                <div class="box-modern-main">
+                  <h4 class="box-modern-title">Transparencia</h4>
+                  <p> Somos totalmente transparentes con el proceso de compra, renta y venta. La transaccion es detallada para su beneficio.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern"><span class="icon box-modern-icon fl-bigmug-line-search74"></span>
+                <div class="box-modern-main">
+                  <h4 class="box-modern-title">Visita de propiedades</h4>
+                  <p>Vea listados de apartamentos, casas y terrenos con fotos, videos HD, recorridos virtuales y planos  3D.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Featured Properties-->
+      <section class="section section-lg bg-gray-12">
+        <div class="container">
+          <div class="layout-4">
+            <h2 class="heading-decoration-1"><span class="heading-inner">Propiedades Destacadas</span></h2>
+            <div class="layout-4-item">
+              <ul class="list-inline-bordered heading-7">
+                <li><a href="{% url 'buildings:all_properties' 'renta' %}">En Renta</a></li>
+                <li><a href="{% url 'buildings:all_properties' 'venta' %}" >En Venta</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row row-50">
+          {% if properties %}
+            {% for propertyE in properties.all|slice:"0:6" %}
+              <div class="col-md-6 col-lg-4">
+                <!-- Product Classic-->
+                <article class="product-classic">
+                  <div class="product-classic-media">
+                    <div class="owl-carousel" data-items="1" data-nav="true" data-stage-padding="0" data-loop="false" data-margin="0" data-mouse-drag="false">
+                      {% for imageProperty in propertyE.get_property_images %}
+                          <img src="{{ imageProperty.img.url }}" alt="Imagen principal" style="max-height: 180px;"/>
+                      {% endfor %}
+                    </div>
+                    <div class="product-classic-price"><span>${{propertyE.price}}</span></div>
+                  </div>  
+                  <h4 class="product-classic-title"><a href="{% url 'buildings:property_view' pk=propertyE.pk %}">{{propertyE.get_fromatted_address}}</a></h4>
+                  <div class="product-classic-divider"></div>
+                  <ul class="product-classic-list">
+                    <li><span class="icon mdi mdi-vector-square"></span><span>{{ propertyE.size}} [ m ] <sup>2</sup> </span></li>
+                    <li><span class="icon hotel-icon-10"></span><span>{{propertyE.n_bathrooms}} Baños</span></li>
+                    <li><span class="icon hotel-icon-05"></span><span>{{propertyE.n_bedrooms}} Cuartos</span></li>
+                    <li><span class="icon hotel-icon-26"></span><span>{{propertyE.n_garages}} Garage</span></li>
+                  </ul>
+                </article>
+              </div>
+            {% endfor %}
+          {% endif %}
+            
+            <div class="col-12 text-center"><a class="button button-primary" href="{% url 'buildings:all_properties' 'all' %}">Ver todas las propiedades</a></div>
+          </div>
+        </div>
+      </section>
+      <!-- Counters-->
+      <section class="section parallax-container" data-parallax-img="{% static 'images/photograph-quito.jpg' %}">
+        <div class="parallax-content section-lg context-dark text-center bg-darkblue-2_1">
+          <div class="container">
+            <div class="row row-30">
+              <div class="col-6 col-md-3">
+                <!-- Box counter-->
+                <article class="box-counter">
+                  <div class="box-counter-main"><span>50</span></div>
+                  <p class="box-counter-title">Propiedades en el mapa</p>
+                </article>
+              </div>
+              <div class="col-6 col-md-3">
+                <!-- Box counter-->
+                <article class="box-counter">
+                  <div class="box-counter-main">
+                    <div class="counter">+20</div>
+                  </div>
+                  <p class="box-counter-title"> Diseños de Interiores </p>
+                </article>
+              </div>
+              <div class="col-6 col-md-3">
+                <!-- Box counter-->
+                <article class="box-counter">
+                  <div class="box-counter-main">
+                    <div class="counter">+100</div>
+                  </div>
+                  <p class="box-counter-title">Clientes felices</p>
+                </article>
+              </div>
+              <div class="col-6 col-md-3">
+                <!-- Box counter-->
+                <article class="box-counter">
+                  <div class="box-counter-main">
+                    <div class="counter">+25</div>
+                  </div>
+                  <p class="box-counter-title">Apartamentos Nuevos </p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Categories-->
+      <section class="section section-lg bg-default">
+        <div class="container">
+          <h2 class="heading-decoration-1"><span class="heading-inner">Diseño de Interiores </span></h2>
+          <div class="row row-30">
+            <div class="col-md-6 col-lg-7"> 
+              <!-- Box Category-->         
+              <article class="box-category-outer"><a class="box-category context-dark" href="#">
+                  <div class="box-category-image-outer" style="background-image: url('static/images/design/categories-1-670x307.jpg' ) ;" ></div>
+                  <div class="box-category-caption">
+                    <div class="box-category-caption-inner">
+                      <h3 class="box-category-title"> Apartamentos </h3>
+                      <p class="box-category-subtitle">  Diseños </p>
+                    </div>
+                  </div></a></article>
+            </div>
+            <div class="col-md-6 col-lg-5">
+              <!-- Box Category-->
+              <article class="box-category-outer"><a class="box-category context-dark" href="#">
+                  <div class="box-category-image-outer" style="background-image: url('static/images/design/categories-2-469x307.jpg' ) ;"></div>
+                  <div class="box-category-caption">
+                    <div class="box-category-caption-inner">
+                      <h3 class="box-category-title">Patios</h3>
+                      <p class="box-category-subtitle"> Diseño </p>
+                    </div>
+                  </div></a></article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <!-- Box Category-->
+              <article class="box-category-outer"><a class="box-category context-dark" href="#">
+                  <div class="box-category-image-outer" style="background-image: url('static/images/design/categories-3-370x307.jpg' ) ;"></div>
+                  <div class="box-category-caption">
+                    <div class="box-category-caption-inner">
+                      <h3 class="box-category-title">Baños</h3>
+                      <p class="box-category-subtitle"> Diseño</p>
+                    </div>
+                  </div></a></article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <!-- Box Category-->
+              <article class="box-category-outer"><a class="box-category context-dark" href="#">
+                  <div class="box-category-image-outer" style="background-image: url('static/images/design/categories-4-370x307.jpg' ) ;"></div>
+                  <div class="box-category-caption">
+                    <div class="box-category-caption-inner">
+                      <h3 class="box-category-title">Dormitorios </h3>
+                      <p class="box-category-subtitle">   Diseños </p>
+                    </div>
+                  </div></a></article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <!-- Box Category-->
+              <article class="box-category-outer"><a class="box-category context-dark" href="search-results.html">
+                  <div class="box-category-image-outer" style="background-image: url('static/images/design/categories-5-370x307.jpg' ) ;"></div>
+                  <div class="box-category-caption">
+                    <div class="box-category-caption-inner">
+                      <h3 class="box-category-title">Casas</h3>
+                      <p class="box-category-subtitle">  Diseños </p>
+                    </div>
+                  </div></a></article>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- What People Say-->
+      <section class="section section-lg bg-gray-12">
+        <div class="container">
+          <h2 class="heading-decoration-1"><span class="heading-inner">Reseñas</span></h2>
+        </div>
+        <div class="container container-wide">
+          <!-- Owl Carousel-->
+          <div class="owl-carousel" data-items="1" data-md-items="2" data-lg-items="3" data-xl-items="4" data-dots="true" data-nav="false" data-stage-padding="0" data-loop="false" data-margin="30" data-mouse-drag="false">
+            <article class="quote-modern">
+              <div class="quote-modern-inner">
+                <time class="quote-modern-time" datetime="2020">Marzo 15, 2020</time>
+                <div class="quote-modern-main">
+                  <p>Elizabeth ha respondido activamente a todas nuesntras preguntas y frustraciones. Estamos en deuda por son toda su ayuda y valor que trajo en nuestro proyecto de bienes raices.</p>
+                </div>
+                <div class="quote-modern-meta-outer">                   
+                   <!-- <img class="quote-modern-avatar" src="#" alt="" width="57" height="57"/> -->
+                  <div class="quote-modern-meta">
+                    <h4 class="quote-modern-cite">Miguel Salgado</h4>
+                    <p class="quote-modern-position">Ingeniero Civil</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="quote-modern">
+              <div class="quote-modern-inner">
+                <time class="quote-modern-time" datetime="2020">Septiembre 17, 2020</time>
+                <div class="quote-modern-main">
+                  <p>La compañia nos brindo el máximo apoyo en todos los asuntos relacionados con la propiedad.No podemos estar mas felices  de haber encontrado nuestra casa.</p>
+                </div>
+                <div class="quote-modern-meta-outer">
+                  <!-- <img class="quote-modern-avatar" src="#" alt="" width="57" height="57"/> -->
+                  <div class="quote-modern-meta">
+                    <h4 class="quote-modern-cite">Luis Alonso</h4>
+                    <p class="quote-modern-position">Bancon del Pichincha</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="quote-modern">
+              <div class="quote-modern-inner">
+                <time class="quote-modern-time" datetime="2020">Diciembre 23, 2020</time>
+                <div class="quote-modern-main">
+                  <p>Siempre he encontrado que su equipo es extremadamente rápido y profesional en todos los tratos que he tenido con ellos. Siempre me mantienes actualizado sobre el progreso.</p>
+                </div>
+                <div class="quote-modern-meta-outer">
+                  <!-- <img class="quote-modern-avatar" src="#" alt="" width="57" height="57"/> -->
+                  <div class="quote-modern-meta">
+                    <h4 class="quote-modern-cite">Cristina Moreno</h4>
+                    <p class="quote-modern-position">Abogada</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="quote-modern">
+              <div class="quote-modern-inner">
+                <time class="quote-modern-time" datetime="2020">Enero 17, 2021</time>
+                <div class="quote-modern-main">
+                  <p>Su consejo y apoyo de nuestra reunión inicial a través del enlace con los inquilinos actuales y un programa de marketing pulido contribuyeron a un gran proceso de venta, ¡gracias!</p>
+                </div>
+                <div class="quote-modern-meta-outer">
+                  <!-- <img class="quote-modern-avatar" src="#" alt="" width="57" height="57"/> -->
+                  <div class="quote-modern-meta">
+                    <h4 class="quote-modern-cite">Maria Espinosa</h4>
+                    <p class="quote-modern-position">Ingeniera</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ-->
+      <section class="section section-lg bg-default">
+        <div class="container">
+          <!-- Box Info-->
+          <article class="box-info box-info-2">
+            <div class="box-info-main context-dark">
+              <div class="box-info-main-inner">
+                <h2>Obtenga una consulta gratuita</h2>
+                <!-- RD Mailform-->
+                <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="#">
+                  <div class="row row-20">
+                    <div class="col-12">
+                      <div class="form-wrap">
+                        <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
+                        <label class="form-label" for="contact-email">Correo electrónico</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-wrap">
+                        <label class="form-label" for="contact-message">Mensaje</label>
+                        <textarea class="form-input" id="contact-message" name="message" data-constraints="@Required"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button class="button button-secondary" type="submit">Enviar Mensaje</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="box-info-aside">
+              <!-- Bootstrap collapse-->
+              <div class="card-group-custom card-group-corporate" id="accordion1" role="tablist" aria-multiselectable="false">
+                          <!-- Bootstrap card-->
+                          <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1-heading-1" role="tab">
+                              <div class="card-title"><a class="card-link" role="button" data-toggle="collapse" href="#accordion1-collapse-1" aria-controls="accordion1-collapse-1" aria-expanded="true"><span>¿Por qué debería referirme a un agente inmobiliario?</span>
+                                  <div class="card-arrow"></div></a></div>
+                            </div>
+                            <div class="collapse show" id="accordion1-collapse-1" role="tabpanel" aria-labelledby="accordion1-heading-1" data-parent="#accordion1">
+                              <div class="card-body">
+                                <p>Un agente inmobiliario es más que un simple "vendedor". Actúan en su nombre como su agente, brindándole asesoramiento y orientación y haciendo un trabajo, ayudándolo a comprar o vender una casa. Si bien es cierto que les pagan por lo que hacen, también lo hacen otras profesiones que brindan asesoramiento, orientación.</p>
+                              </div>
+                            </div>
+                          </article>
+                          <!-- Bootstrap card-->
+                          <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1-heading-2" role="tab">
+                              <div class="card-title"><a class="card-link collapsed" role="button" data-toggle="collapse" href="#accordion1-collapse-2" aria-controls="accordion1-collapse-2" aria-expanded="false"><span>¿Debería hablar con un banco antes de buscar casas?</span>
+                                  <div class="card-arrow"></div></a></div>
+                            </div>
+                            <div class="collapse" id="accordion1-collapse-2" role="tabpanel" aria-labelledby="accordion1-heading-2" data-parent="#accordion1">
+                              <div class="card-body">
+                                <p>¡La respuesta a la pregunta es SÍ! Hay muchas razones por las que debería hablar con un banco y obtener una aprobación previa antes de buscar casas. En primer lugar, hablar con un banco antes de buscar casas puede ayudarlo a comprender exactamente cuánto puede pagar. No hay ninguna razón para buscar casas que se enumeran por $ 250,000 si solo puede pagar hasta $ 200,000.</p>
+                              </div>
+                            </div>
+                          </article>
+                          <!-- Bootstrap card-->
+                          <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1-heading-3" role="tab">
+                              <div class="card-title"><a class="card-link collapsed" role="button" data-toggle="collapse" href="#accordion1-collapse-3" aria-controls="accordion1-collapse-3" aria-expanded="false"><span> ¿Debo comprar o seguir alquilando? </span>
+                                  <div class="card-arrow"></div></a></div>
+                            </div>
+                            <div class="collapse" id="accordion1-collapse-3" role="tabpanel" aria-labelledby="accordion1-heading-3" data-parent="#accordion1">
+                              <div class="card-body">
+                                <p>Comprar una vivienda puede ser una inversión muy sólida. Dicho esto, alquilar también puede ser una mejor opción para algunos, dependiendo de las circunstancias. Las tasas de interés actuales son increíbles. Una hipoteca de la FHA a 30 años se puede bloquear a una tasa de alrededor del 3,5%. Dado que las tasas de interés son tan bajas, en realidad puede ser más barato pagar una hipoteca en este momento que pagar el alquiler.</p>
+                              </div>
+                            </div>
+                          </article>
+                          <!-- Bootstrap card-->
+                          <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1-heading-4" role="tab">
+                              <div class="card-title"><a class="card-link collapsed" role="button" data-toggle="collapse" href="#accordion1-collapse-4" aria-controls="accordion1-collapse-4" aria-expanded="false"><span>¿Puedo encontrar una propiedad de alquiler con opción a compra?</span>
+                                  <div class="card-arrow"></div></a></div>
+                            </div>
+                            <div class="collapse" id="accordion1-collapse-4" role="tabpanel" aria-labelledby="accordion1-heading-4" data-parent="#accordion1">
+                              <div class="card-body">
+                                <p>Por supuesto que puede, pero la probabilidad no es muy alta. Lo mismo puede decirse de una propiedad de alquiler con opción a compra. Una pregunta común de los compradores de vivienda es si existe el alquiler con opción a compra o si un propietario consideraría esa opción. Están ahí fuera, pero hay algunas cosas que necesita saber antes de aceptar un alquiler con opción a compra.</p>
+                              </div>
+                            </div>
+                          </article>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <script>
+        // function validate_search(event)
+        // {
+        //   event.preventDefault();
+        //   var location_pk = document.getElementById("property-location").value ;
+        //   var prop_type  = document.getElementById("property-type").value ;
+        //   var status = document.getElementById("property-status").value ;
+        //   var n_baths =  document.getElementById("n_baths").value ;
+        //   var n_beds = document.getElementById("n_beds").value ;
+        // // //   var slider = document.getElementsByClassName("rd-range__pointer-tooltip");
+        //   var top_price = slider[1].innerHTML ;
+        //   var top_area =  slider[3].innerHTML ;
+        //   var url = "{% url 'buildings:search_properties'  %}"
+          
+
+
+        //   // location_pk=oForm.elements["search-property-location"];
+ 
+
+        //   alert(top_area );
+        //   var xhr = new XMLHttpRequest();
+        //   xhr.open("POST", url , false);
+        //   xhr.setRequestHeader('Content-Type', 'application/json');
+        //   xhr.send(JSON.stringify({
+        //     location_pk: location_pk,
+        //     prop_type:prop_type,
+        //     status:status,
+        //     n_baths:n_baths,
+        //     n_beds:n_beds,
+        //     top_price:top_price,
+        //     top_area:top_area
+
+        //   }));
+
+        //   alert('sent' );
+        // }
+
+       
+         // $("#search-info-form").submit(function(e) {
+           // alert("I prevent the default.");
+          //e.preventDefault();
+        // or return false;
+         // });
+        //  function mySubmitFunction(e) {
+        //   e.preventDefault();
+        //   alert('No Chupamela');
+        //   var location_pk = document.getElementById("property-location").value ;
+        //   var prop_type  = document.getElementById("property-type").value ;
+        //   var status = document.getElementById("property-status").value ;
+        //   var n_baths =  document.getElementById("n_baths").value ;
+        //   var n_beds = document.getElementById("n_beds").value ;
+        // // //   var slider = document.getElementsByClassName("rd-range__pointer-tooltip");
+        //   //var top_price = slider[1].innerHTML ;
+        //   //var top_area =  slider[3].innerHTML ;
+        //   var url = "{% url 'buildings:search_properties'  %}";
+          
+        //   var xhr = new XMLHttpRequest();
+        //   xhr.open("POST", url , true);
+        //   xhr.setRequestHeader('Content-Type', 'application/json');
+        //   xhr.send(JSON.stringify({
+        //     location_pk: location_pk,
+        //     prop_type:prop_type,
+        //     status:status,
+        //     n_baths:n_baths,
+        //     n_beds:n_beds,
+            
+
+        //   }));
+
+
+          // location_pk=oForm.elements["search-property-location"];
+ 
+
+        // $('#principal-info-submit').submit();
+        // }
+        
+        
+      
+      </script>
+
+
+  
+{% endblock %}

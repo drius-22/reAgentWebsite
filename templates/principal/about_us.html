@@ -1,0 +1,100 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+    <link href="{% static 'css/home_style.css'%}?20090712" rel="stylesheet" type="text/css"> 
+{% endblock %} 
+{% block head_title %}Sandra Elizabeth{% endblock %} 
+{% block content %}
+<!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image context-dark" data-opacity="59"  style="background-image: url('{% static 'images/breadcrumbs-bg-07-1920x420.jpg' %}' ); ">
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title">Nosotros</h2>
+        </div>
+      </section>
+
+      <div class="divider-section"></div>
+      <!-- Shortly About Us-->
+      <section class="section section-md bg-default">
+        <div class="container">
+          <!-- Box Info-->
+          <article class="box-info box-info-1">
+            <div class="box-info-aside">
+              <div class="image-block-1" style="background-image: url('{% static 'images/Ecuador-Quito-cathedral.jpg' %}' ); "></div>
+            </div>
+            <div class="box-info-main context-dark">
+              <div class="box-info-main-inner">
+                <h2 class="f1">¡La mejor atención! </h2>
+                <div class="divider-small"></div>
+                <!-- Bootstrap tabs-->
+                <div class="tabs-custom tabs-horizontal tabs-line" id="tabs-1">
+                  <!-- Nav tabs-->
+                  <ul class="nav nav-tabs">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-toggle="tab">Nuestro Objetivo</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-toggle="tab">Nostros</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-toggle="tab">Mision</a></li>
+                  </ul>
+                  <!-- Tab panes-->
+                  <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tabs-1-1">
+                      <p>Trabajamos sin descanso para bridarle el mejor servicio inmobiliario posible.</p>
+                      <p>Nuestro objetivo es asesorarlo para que consiga la casa - departamento que tanto se merece. </p>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-1-2">
+                      <p> Viviendas Art se dedica a la venta de bienes raíces en Ecuador. Somos expertos en el proceso de compra y venta de inmobiliarios en el país.</p>
+                      <ul class="list-marked-1 cols-2">
+                        <li>Precios competitivos</li>
+                        <li>Las mejores propieades del país</li>
+                        <li>Asesoramiento personalizado</li>
+                        <li>Transparencia</li>
+                      </ul>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-1-3">
+                      <p>Nuestra misión es revolucionar la industria de bienes raíces en Ecuador.</p>
+                      <p>Incorporamos técnicas probadas y profesionales de vanguardia que se especializan en la comercialización, listado y venta de viviendas de lujo nuevas y de reventa.</p>
+                    </div>
+                  </div>
+                </div><a class="button button-sm button-secondary" href="{% url 'contact_us'%}">Contáctanos</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- Features-->
+      <section class="section section-lg bg-default">
+        <div class="container">
+          <div class="row row-flex row-30 justify-content-center">
+            <div class="col-md-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern"><span class="icon box-modern-icon fl-bigmug-line-big104"></span>
+                <div class="box-modern-main">
+                  <h4 class="box-modern-title">Varias propiedades</h4>
+                  <p>Tenemos propiedades en multiples ubicaciones alrededor de Ecuador, disponibles para su compra o renta.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern"><span class="icon box-modern-icon fl-bigmug-line-wallet26"></span>
+                <div class="box-modern-main">
+                  <h4 class="box-modern-title">Transparencia</h4>
+                  <p>Somos totalmente transparentes con el proceso de compra, renta y venta. La transaccion es detallada para su beneficio.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern"><span class="icon box-modern-icon fl-bigmug-line-search74"></span>
+                <div class="box-modern-main">
+                  <h4 class="box-modern-title">Visita de propiedades</h4>
+                  <p>Vea listados de apartamentos, casas y terrenos con fotos, videos HD, recorridos virtuales y planos  3D.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+     
+  
+
+{% endblock %}

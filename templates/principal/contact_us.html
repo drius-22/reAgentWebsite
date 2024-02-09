@@ -1,0 +1,145 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+    <link href="{% static 'css/home_style.css'%}?20090712" rel="stylesheet" type="text/css"> 
+{% endblock %} 
+{% block head_title %}Sandra Elizabeth{% endblock %} 
+{% block content %}
+<!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image context-dark"  style="background-image: url('{% static 'images/breadcrumbs-bg-07-1920x420.jpg' %}' ); ">
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title">Contáctanos</h2>
+        </div>
+      </section>
+  
+      <div class="divider-section"></div>
+      <section class="section section-lg bg-default">
+        <div class="container">
+          <div class="layout-bordered">
+            <div class="layout-bordered-aside">
+              <div class="layout-bordered-aside-inner">
+                <h2>Datos de contacto</h2>
+                <p>Si tiene alguna duda, llene el formulario de contacto y le responderemos lo más rápido posible.</p>
+                <div class="layout-bordered-aside-group">
+                  <dl class="list-terms-1">
+                    <dt>Número de Teléfono:</dt>
+                    <dd><span class="icon mdi-phone mdi"></span><a class="list-terms-1-link-big" href="tel:#">+593-99-662-1358</a></dd>
+                  </dl>
+                  <dl class="list-terms-1">
+                    <dt>Correo Electrónico:</dt>
+                    <dd><span class="icon mdi mdi-email-outline"></span><a href="mailto:#">info@viviendas.art</a></dd>
+                  </dl>
+                  <dl class="list-terms-1">
+                    <dt>Oficina Principal:</dt>
+                    <dd><span class="icon mdi mdi-map-marker"></span><a href="#">Av. La Prensa y Pedro Traversari. Quito, Ecuador</a></dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="layout-bordered-main">
+              <div class="layout-bordered-main-inner">
+                <h2>Ponerse en contacto</h2>
+                <!-- RD Mailform-->
+
+                <form class="rd-form rd-mailform"  id="contactus_form" > 
+                  {% csrf_token %}
+
+                  <div class="row row-20">
+
+                    <div class="col-md-12">
+                      <div class="form-wrap">
+
+                        {{ form.form_name.errors }}
+                        <label class="form-label" for="{{ form.form_name.id_for_label }}">Tu Nombre</label>
+                        {{ form.form_name }}
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-wrap">
+                        {{ form.form_email.errors }}
+                        
+                        <label class="form-label" for="{{ form.form_email.id_for_label }}">Correo Electrónico</label>
+                        {{ form.form_email }}
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-wrap">
+                        {{ form.form_phone.errors }}
+                        <label class="form-label" for="{{ form.form_phone.id_for_label }}">Número de Teléfono</label>
+                        {{ form.form_phone }}
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-wrap">
+                        {{ form.form_message.errors }}
+                        <label class="form-label" for="{{ form.form_message.id_for_label }}">Mensaje </label>
+                        {{ form.form_message }}
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <button class="button button-sm button-secondary" type="submit" >Enviar Mensaje</button>
+                    </div>
+
+
+
+                  </div>
+
+                </form>
+                
+
+               
+                <div id='msg2'> 
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+  /*
+        On submiting the form, send the POST ajax
+        request to server and after successfull submission
+        display the object.
+    */
+    $("#contactus_form").submit(function (e) {
+        // preventing from page reload and default actions
+        e.preventDefault();
+        // serialize the data for sending the form data.
+        var serializedData = $(this).serialize();
+        // make POST ajax call
+        $.ajax({
+            type: "POST",
+            url: "{% url 'contact_us' %}",
+            data: serializedData,
+            success: function (response) {
+                // on successfull creating object
+                // 1. clear the form.
+
+
+                $("#contactus_form").trigger('reset');
+
+                document.getElementById("msg2").innerHTML ='</br><div class="alert alert-success alert-dismissible"  > <strong> Mensaje Enviado </strong> </div>';  
+         
+            },
+            error: function (response) {
+                // alert the error if any error occured
+                ddocument.getElementById("msg2").innerHTML ='</br><div class="alert alert-warning alert-dismissible"  > <strong> Mensaje no pudo ser enviado. Porvafor, envienos un correo. </strong> </div>';
+
+                alert(response["responseJSON"]["error"]);
+            }
+        })
+    })
+
+</script>
+{% endblock  %}

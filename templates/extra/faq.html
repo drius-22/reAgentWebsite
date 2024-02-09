@@ -1,0 +1,111 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+    <link href="{% static 'css/home_style.css'%}?20090712" rel="stylesheet" type="text/css"> 
+{% endblock %} 
+{% block head_title %}Sandra Elizabeth{% endblock %} 
+{% block content %}
+<!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image context-dark" data-opacity="54" style="background-image: url(images/breadcrumbs-bg-08-1920x420.jpg);">
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title">FAQ</h2>
+        </div>
+      </section>
+      <section class="section-xs bg-white">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="active">FAQ</li>
+          </ul>
+        </div>
+      </section>
+      <div class="divider-section"></div>
+      <section class="section section-md bg-default">
+        <div class="container">
+          <!-- Box Info-->
+          <article class="box-info box-info-2">
+            <div class="box-info-main context-dark">
+              <div class="box-info-main-inner">
+                <h2>Get a Free Consultation</h2>
+                <!-- RD Mailform-->
+                <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                  <div class="row row-20">
+                    <div class="col-12">
+                      <div class="form-wrap">
+                        <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
+                        <label class="form-label" for="contact-email">E-mail</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-wrap">
+                        <label class="form-label" for="contact-message">Message</label>
+                        <textarea class="form-input" id="contact-message" name="message" data-constraints="@Required"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button class="button button-secondary" type="submit">Send message</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="box-info-aside">
+              <!-- Bootstrap collapse-->
+              <div class="card-group-custom card-group-corporate" id="accordion1" role="tablist" aria-multiselectable="false">
+                          <!-- Bootstrap card-->
+                          <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1-heading-1" role="tab">
+                              <div class="card-title"><a class="card-link" role="button" data-toggle="collapse" href="#accordion1-collapse-1" aria-controls="accordion1-collapse-1" aria-expanded="true"><span>Why should I refer to a real estate salesperson?</span>
+                                  <div class="card-arrow"></div></a></div>
+                            </div>
+                            <div class="collapse show" id="accordion1-collapse-1" role="tabpanel" aria-labelledby="accordion1-heading-1" data-parent="#accordion1">
+                              <div class="card-body">
+                                <p>A real estate salesperson is more than just a “sales person.” They act on your behalf as your agent, providing you with advice and guidance and doing a job – helping you buy or sell a home. While it is true they get paid for what they do, so do other professions that provide advice, guidance.</p>
+                              </div>
+                            </div>
+                          </article>
+                          <!-- Bootstrap card-->
+                          <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1-heading-2" role="tab">
+                              <div class="card-title"><a class="card-link collapsed" role="button" data-toggle="collapse" href="#accordion1-collapse-2" aria-controls="accordion1-collapse-2" aria-expanded="false"><span>Should I talk with a bank before looking at homes?</span>
+                                  <div class="card-arrow"></div></a></div>
+                            </div>
+                            <div class="collapse" id="accordion1-collapse-2" role="tabpanel" aria-labelledby="accordion1-heading-2" data-parent="#accordion1">
+                              <div class="card-body">
+                                <p>The answer to the question is YES!  There are tons of reasons why you should talk with a bank and get pre-approved before looking at homes.  First and foremost, talking with a bank before looking at homes can help you understand exactly how much you can afford.  There is no reason to look at homes that are listed for $250,000 if you can only afford up to $200,000.</p>
+                              </div>
+                            </div>
+                          </article>
+                          <!-- Bootstrap card-->
+                          <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1-heading-3" role="tab">
+                              <div class="card-title"><a class="card-link collapsed" role="button" data-toggle="collapse" href="#accordion1-collapse-3" aria-controls="accordion1-collapse-3" aria-expanded="false"><span>Should I buy or continue to rent?</span>
+                                  <div class="card-arrow"></div></a></div>
+                            </div>
+                            <div class="collapse" id="accordion1-collapse-3" role="tabpanel" aria-labelledby="accordion1-heading-3" data-parent="#accordion1">
+                              <div class="card-body">
+                                <p>Buying a home can be a very solid investment.  This being said, renting can also be a better option for some, depending on the circumstances.  The current interest rates are incredible.  A 30-year FHA mortgage can be locked in at a rate of around 3.5%.  Since the interest rates are so low, it actually can be cheaper to pay a mortgage right now than paying rent.</p>
+                              </div>
+                            </div>
+                          </article>
+                          <!-- Bootstrap card-->
+                          <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1-heading-4" role="tab">
+                              <div class="card-title"><a class="card-link collapsed" role="button" data-toggle="collapse" href="#accordion1-collapse-4" aria-controls="accordion1-collapse-4" aria-expanded="false"><span>Can I find a rent-to-own property?</span>
+                                  <div class="card-arrow"></div></a></div>
+                            </div>
+                            <div class="collapse" id="accordion1-collapse-4" role="tabpanel" aria-labelledby="accordion1-heading-4" data-parent="#accordion1">
+                              <div class="card-body">
+                                <p>Of course you can, but the probability isn’t very high.  The same can be said about a rent-to-own property.  A common question from home buyers is whether rent-to-owns exist or whether an owner would consider that option.  They are out there, but there are somethings that you need to know before agreeing to a rent-to-own.</p>
+                              </div>
+                            </div>
+                          </article>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+{% endblock %}

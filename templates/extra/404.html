@@ -1,0 +1,33 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+    <link href="{% static 'css/home_style.css'%}?20090712" rel="stylesheet" type="text/css"> 
+{% endblock %} 
+{% block head_title %}Sandra Elizabeth{% endblock %} 
+{% block content %}
+<!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image context-dark" data-opacity="45" style="background-image: url(images/breadcrumbs-bg-02-1922x977.jpg);">
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title">404</h2>
+        </div>
+      </section>
+      <section class="section-xs bg-white">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="active">404</li>
+          </ul>
+        </div>
+      </section>
+      <div class="divider-section"></div>
+      <section class="section section-md bg-default text-center">
+        <div class="container">
+          <h2 class="text-spacing-20">Page Not Found</h2>
+          <p class="heading-5">You may have mistyped the address or the page may have moved</p><a class="button button-primary" href="index.html">Go to Homepage</a>
+        </div>
+      </section>
+
+
+{% endblock %}

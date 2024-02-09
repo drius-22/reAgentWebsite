@@ -1,0 +1,93 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+{% endblock %} 
+{% block head_title %}Sandra Elizabeth{% endblock %} 
+{% block content %}
+      <!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image context-dark" data-opacity="37" style="background-image: url('{% static 'images/breadcrumbs-bg-04-1922x367.jpg' %}' ); ">
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title"> Propiedades en {{type_of}}</h2>
+        </div>
+      </section>
+      <section class="section-xs bg-white">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Página principal</a></li>
+            <li><a href="#">Propiedades</a></li>
+            <li class="active"> Propiedades en {{type_of}}</li>
+          </ul>
+        </div>
+      </section>
+      <div class="divider-section"></div>
+      <!-- Section Agent Single-->
+      <section class="section section-md bg-gray-12">
+        <div class="container">
+          <div class="row row-50">
+            
+            <div class="col-lg-7 col-xl-8">
+              <div class="row row-30">
+                <div class="col-sm-12">
+                  <div class="row row-50">
+
+                    {% for propertyE in properties %}
+
+                      <div class="col-md-6 col-lg-12 col-xl-6">
+                        <!-- Product classic 2-->
+                        <article class="product-classic product-classic-2">
+                          <h4 class="product-classic-title"><a href="{% url 'buildings:property_view' pk=propertyE.pk %}">{{ propertyE.address }} , {{ propertyE.location.city.name }}</a></h4>
+                          <div class="product-classic-media">
+                            <div class="owl-carousel" data-items="1" data-nav="true" data-stage-padding="0" data-loop="true" data-margin="0" data-mouse-drag="false">
+                                {% for imageProperty in propertyE.get_property_images %}
+                                <img src="{{ imageProperty.img.url }}" alt="" width="480" height="287"/>
+                                {% endfor %}
+                            </div>
+                            <div class="product-classic-price"><span>${{ propertyE.price }}</span></div>
+                          </div>
+                          <ul class="product-classic-list">
+                            <li><span class="icon hotel-icon-10"></span><span>{{ propertyE.n_bathrooms}} Baños</span></li>
+                            <li><span class="icon hotel-icon-05"></span><span>{{ propertyE.n_bedrooms}} Dormitorio(s)</span></li>
+                            <li><span class="icon mdi mdi-vector-square"></span><span>{{ propertyE.size}} [ m ] <sup>2</sup></span></li>
+                            <li><span class="icon hotel-icon-26"></span><span>{{ propertyE.n_garages}} Garaje(s)</span></li>
+                          </ul>
+                        </article>
+                      </div>
+
+                    {% endfor %}
+
+                    
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="col-lg-5 col-xl-4">
+              <!-- include ../components/_agent-sidebar-right-->
+             
+                <div class="col-md-6 col-lg-12">
+                  <article class="block-callboard">
+                    <div class="block-callboard-body">
+                      <h3 class="block-callboard-title">Obtenga una consulta gratuita</h3>
+                      <div class="block-callboard-divider"></div>
+                      <div class="block-callboard-text">
+                        <p>Si tiene alguna pregunta, simplemente llámenos o envíenos un correo electrónico y le responderemos a la brevedad..</p>
+                      </div>
+                      <ul class="block-callboard-list">
+                        <li>
+                          <div class="block-callboard-tell"><a href="tel:#">+593-99-662-1358 </a></div>
+                        </li>
+                        <li>
+                          <div class="block-callboard-mail"><a href="mailto:#"> info@viviendas.art</a></div>
+                        </li>
+                      </ul><a class="button button-block button-secondary" href="{% url 'contact_us'%}">Contáctanos</a>
+                    </div>
+                  </article>
+                </div>
+       
+            </div>
+          </div>
+        </div>
+      </section>
+    
+{% endblock %}

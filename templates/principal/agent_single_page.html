@@ -1,0 +1,265 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+    <link href="{% static 'css/home_style.css'%}?20090712" rel="stylesheet" type="text/css"> 
+{% endblock %} 
+{% block head_title %}Sandra Elizabeth{% endblock %} 
+{% block content %}
+ 
+ <!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image context-dark" data-opacity="37" style="background-image: url(images/breadcrumbs-bg-04-1922x367.jpg);">
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title">Sam Wilson</h2>
+        </div>
+      </section>
+      <section class="section-xs bg-white">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="active">Single Agent</li>
+          </ul>
+        </div>
+      </section>
+      <div class="divider-section"></div>
+      <!-- Section Agent Single-->
+      <section class="section section-md bg-gray-12">
+        <div class="container">
+          <div class="row row-30">
+            <div class="col-lg-7 col-xl-8">
+              <div class="row row-60">
+                <div class="col-12">
+                  <article class="block-person">
+                    <div class="block-person-left"><img src="images/agent-page-01-650x756.jpg" alt="" width="650" height="756"/>
+                    </div>
+                    <div class="block-person-body">
+                      <h3 class="block-person-title">Sam Wilson</h3>
+                      <p class="block-person-cite">Real Estate Broker</p>
+                      <ul class="block-person-list">
+                        <li>
+                          <div class="block-person-link"><span class="icon mdi mdi-phone"></span><a href="tel:#">+ 123 098 890 76 56</a></div>
+                        </li>
+                        <li>
+                          <div class="block-person-link"><span class="icon mdi mdi-email-outline"></span><a class="text-spacing-50" href="mailto:#">info@demolink.org</a></div>
+                        </li>
+                        <li>
+                          <ul class="list-inline-1">
+                            <li><a class="icon fa-facebook" href="#"></a></li>
+                            <li><a class="icon fa-twitter" href="#"></a></li>
+                            <li><a class="icon fa-google-plus" href="#"></a></li>
+                            <li><a class="icon fa-pinterest-p" href="#"></a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <p>Being a full time real estate broker for over 15 years has given Sam the opportunity to work with the most wonderful clients.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="col-12">
+                  <h3>Get A Quick Quote</h3>
+                  <form class="rd-form rd-mailform form-borderless" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                    <div class="row row-24">
+                      <div class="col-md-6">
+                        <div class="form-wrap">
+                          <input class="form-input" id="contact-name-re" type="text" name="first-name" data-constraints="@Required">
+                          <label class="form-label" for="contact-name-re">First Name</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-wrap">
+                          <input class="form-input" id="contact-last-name-re" type="text" name="last-name" data-constraints="@Required">
+                          <label class="form-label" for="contact-last-name-re">Last Name</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-wrap">
+                          <input class="form-input" id="contact-phone-re" type="text" name="phone" data-constraints="@PhoneNumber">
+                          <label class="form-label" for="contact-phone-re">Phone</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-wrap">
+                          <input class="form-input" id="contact-email-re" type="email" name="email" data-constraints="@Email @Required">
+                          <label class="form-label" for="contact-email-re">E-mail</label>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-wrap">
+                          <label class="form-label" for="contact-message-re">Message</label>
+                          <textarea class="form-input" id="contact-message-re" name="message" data-constraints="@Required"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <button class="button button-secondary" type="submit">Send message</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-12">
+                  <h3>My Listings</h3>
+                  <div class="row row-30">
+                    <div class="col-md-6 col-lg-12 col-xl-6">
+                      <!-- Product Classic-->
+                      <article class="product-classic">
+                        <div class="product-classic-media">
+                          <div class="owl-carousel" data-items="1" data-nav="true" data-stage-padding="0" data-loop="false" data-margin="0" data-mouse-drag="false"><img src="images/featured-properties-01-480x287.jpg" alt="" width="480" height="287"/><img src="images/featured-properties-02-480x287.jpg" alt="" width="480" height="287"/><img src="images/featured-properties-03-480x287.jpg" alt="" width="480" height="287"/><img src="images/featured-properties-04-480x287.jpg" alt="" width="480" height="287"/>
+                          </div>
+                          <div class="product-classic-price"><span>$5000\mo</span></div>
+                        </div>
+                        <h4 class="product-classic-title"><a href="single-property.html">401 Biscayne Boulevard, Miami</a></h4>
+                        <div class="product-classic-divider"></div>
+                        <ul class="product-classic-list">
+                          <li><span class="icon mdi mdi-vector-square"></span><span>480 Sq Ft</span></li>
+                          <li><span class="icon hotel-icon-10"></span><span>2 Bathrooms</span></li>
+                          <li><span class="icon hotel-icon-05"></span><span>2 Bedrooms</span></li>
+                          <li><span class="icon hotel-icon-26"></span><span>1 Garage</span></li>
+                        </ul>
+                      </article>
+                    </div>
+                    <div class="col-md-6 col-lg-12 col-xl-6">
+                      <!-- Product Classic-->
+                      <article class="product-classic">
+                        <div class="product-classic-media">
+                          <div class="owl-carousel" data-items="1" data-nav="true" data-stage-padding="0" data-loop="false" data-margin="0" data-mouse-drag="false"><img src="images/featured-properties-05-480x287.jpg" alt="" width="480" height="287"/><img src="images/featured-properties-06-480x287.jpg" alt="" width="480" height="287"/><img src="images/featured-properties-07-480x287.jpg" alt="" width="480" height="287"/><img src="images/featured-properties-08-480x287.jpg" alt="" width="480" height="287"/>
+                          </div>
+                          <div class="product-classic-price"><span>$2500\mo</span></div>
+                        </div>
+                        <h4 class="product-classic-title"><a href="single-property.html">923 Folsom St, San Francisco</a></h4>
+                        <div class="product-classic-divider"></div>
+                        <ul class="product-classic-list">
+                          <li><span class="icon mdi mdi-vector-square"></span><span>535 Sq Ft</span></li>
+                          <li><span class="icon hotel-icon-10"></span><span>2 Bathrooms</span></li>
+                          <li><span class="icon hotel-icon-05"></span><span>3 Bedrooms</span></li>
+                          <li><span class="icon hotel-icon-26"></span><span>1 Garage</span></li>
+                        </ul>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 col-xl-4">
+              <div class="row row-50">
+                <div class="col-md-6 col-lg-12">
+                  <div class="block-info">
+                    <h3>Find Your Property</h3>
+                    <form class="rd-mailform form-select" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" data-style="modern" data-placeholder="Choose Location" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="2">Alaska</option>
+                          <option value="3">Arizona</option>
+                          <option value="4">Arkansas</option>
+                          <option value="5">California</option>
+                          <option value="6">Colorado</option>
+                          <option value="7">Connecticut</option>
+                          <option value="8">Delaware</option>
+                          <option value="9">Florida</option>
+                        </select><span class="select-arrow"></span>
+                      </div>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" data-style="modern" data-placeholder="Property Status" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="2">Low</option>
+                          <option value="3">Middle</option>
+                          <option value="4">Primary</option>
+                        </select><span class="select-arrow"></span>
+                      </div>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" data-style="modern" data-placeholder="Property Type" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                          <option label="placeholder"></option>
+                          <option value="2">Low</option>
+                          <option value="3">Middle</option>
+                          <option value="4">Primary</option>
+                        </select><span class="select-arrow"></span>
+                      </div>
+                      <div class="form-wrap-group">
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Min Price" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                            <option label="placeholder"></option>
+                            <option value="2">100</option>
+                            <option value="3">200</option>
+                            <option value="4">300</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Max Price" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                            <option label="placeholder"></option>
+                            <option value="2">1000</option>
+                            <option value="3">2000</option>
+                            <option value="4">3000</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                      </div>
+                      <div class="form-wrap-group">
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Min Area" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                            <option label="placeholder"></option>
+                            <option value="2">100</option>
+                            <option value="3">200</option>
+                            <option value="4">300</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Max Area" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                            <option label="placeholder"></option>
+                            <option value="2">1000</option>
+                            <option value="3">2000</option>
+                            <option value="4">3000</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                      </div>
+                      <div class="form-wrap-group">
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Min Resint" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                            <option label="placeholder"></option>
+                            <option value="2">100</option>
+                            <option value="3">200</option>
+                            <option value="4">300</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-style="modern" data-placeholder="Max Resint" data-minimum-results-for-search="Infinity" data-constraints="@Required">
+                            <option label="placeholder"></option>
+                            <option value="2">1000</option>
+                            <option value="3">2000</option>
+                            <option value="4">3000</option>
+                          </select><span class="select-arrow"></span>
+                        </div>
+                      </div>
+                      <div class="form-button">
+                        <button class="button button-block button-secondary" type="submit">Search</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-12">
+                  <div class="block-info">
+                    <h3>Latest Listings</h3><a class="post-minimal-1" href="#">
+                      <div class="post-minimal-1-left"><img src="images/post-agent-01-212x208.jpg" alt="" width="212" height="208"/>
+                      </div>
+                      <div class="post-minimal-1-body">
+                        <div class="post-minimal-1-title"><span>401 Biscayne Blvd</span></div>
+                        <div class="post-minimal-1-text"><span>$5000\mo</span></div>
+                      </div></a><a class="post-minimal-1" href="#">
+                      <div class="post-minimal-1-left"><img src="images/post-agent-02-212x208.jpg" alt="" width="212" height="208"/>
+                      </div>
+                      <div class="post-minimal-1-body">
+                        <div class="post-minimal-1-title"><span>35 Pond St, New York</span></div>
+                        <div class="post-minimal-1-text"><span>$5550\mo</span></div>
+                      </div></a><a class="post-minimal-1" href="#">
+                      <div class="post-minimal-1-left"><img src="images/post-agent-03-212x208.jpg" alt="" width="212" height="208"/>
+                      </div>
+                      <div class="post-minimal-1-body">
+                        <div class="post-minimal-1-title"><span>182 3rd St, Seattle</span></div>
+                        <div class="post-minimal-1-text"><span>$2520\mo</span></div>
+                      </div></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}

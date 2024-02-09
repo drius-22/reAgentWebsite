@@ -1,0 +1,199 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+    <link href="{% static 'css/home_style.css'%}?20090712" rel="stylesheet" type="text/css"> 
+{% endblock %} 
+{% block head_title %}Sandra Elizabeth{% endblock %} 
+{% block content %}
+ 
+ 
+ <!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image context-dark" data-opacity="38" style="background-image: url(images/breadcrumbs-bg-06-1922x427.jpg);">
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title">Testimonials</h2>
+        </div>
+      </section>
+      <section class="section-xs bg-white">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="active">Testimonials</li>
+          </ul>
+        </div>
+      </section>
+      <div class="divider-section"></div>
+      <!-- What People Say #1-->
+      <section class="section section-lg bg-gray-12">
+        <div class="container">
+          <h2 class="heading-decoration-1"><span class="heading-inner">What People Say #1</span></h2>
+          <!-- Owl Carousel-->
+          <div class="owl-carousel owl-carousel-spacing mt-35 mt-lg-60" data-items="1" data-md-items="2" data-lg-items="3" data-dots="true" data-nav="false" data-stage-padding="0" data-loop="false" data-margin="30" data-mouse-drag="false">
+            <blockquote class="quote-light">
+              <svg class="quote-light-mark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 61 53" width="61" height="53">
+                <defs>
+                  <path d="M0 0h61v53H0z"></path>
+                </defs>
+                <clippath>
+                  <use overflow="visible"></use>
+                </clippath>
+                <path d="M11.7 0C5.2 0 0 5.4 0 12s5.2 12 11.7 12C23.3 24 15.6 47.2 0 47.2v5.6C27.8 52.8 38.6 0 11.7 0zm33.6 0c-6.4 0-11.7 5.4-11.7 12s5.2 12 11.7 12c11.7 0 3.9 23.2-11.7 23.2v5.6C61.4 52.8 72.2 0 45.3 0zm0 0"></path>
+              </svg>
+              <div class="quote-light-header"><img class="quote-light-avatar" src="images/testimonials-1-57x57.jpg" alt="" width="57" height="57"/>
+                <div class="quote-light-meta">
+                  <h4 class="quote-light-cite">Karen Sanders</h4>
+                  <p class="quote-light-position">Pharmacist</p>
+                </div>
+              </div>
+              <div class="quote-light-main">
+                <p>Your property managers have been active in their response to repairs and always patient with our frustrations. You have always found us wonderful tenants.</p>
+              </div>
+            </blockquote>
+            <blockquote class="quote-light">
+              <svg class="quote-light-mark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 61 53" width="61" height="53">
+                <defs>
+                  <path d="M0 0h61v53H0z"></path>
+                </defs>
+                <clippath>
+                  <use overflow="visible"></use>
+                </clippath>
+                <path d="M11.7 0C5.2 0 0 5.4 0 12s5.2 12 11.7 12C23.3 24 15.6 47.2 0 47.2v5.6C27.8 52.8 38.6 0 11.7 0zm33.6 0c-6.4 0-11.7 5.4-11.7 12s5.2 12 11.7 12c11.7 0 3.9 23.2-11.7 23.2v5.6C61.4 52.8 72.2 0 45.3 0zm0 0"></path>
+              </svg>
+              <div class="quote-light-header"><img class="quote-light-avatar" src="images/testimonials-2-57x57.jpg" alt="" width="57" height="57"/>
+                <div class="quote-light-meta">
+                  <h4 class="quote-light-cite">Walter Williams</h4>
+                  <p class="quote-light-position">Lifeguard</p>
+                </div>
+              </div>
+              <div class="quote-light-main">
+                <p>We recently rented an apartment through your site, and have been looked after by James Thompson. He provided us with utmost support on every property issue.</p>
+              </div>
+            </blockquote>
+            <blockquote class="quote-light">
+              <svg class="quote-light-mark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 61 53" width="61" height="53">
+                <defs>
+                  <path d="M0 0h61v53H0z"></path>
+                </defs>
+                <clippath>
+                  <use overflow="visible"></use>
+                </clippath>
+                <path d="M11.7 0C5.2 0 0 5.4 0 12s5.2 12 11.7 12C23.3 24 15.6 47.2 0 47.2v5.6C27.8 52.8 38.6 0 11.7 0zm33.6 0c-6.4 0-11.7 5.4-11.7 12s5.2 12 11.7 12c11.7 0 3.9 23.2-11.7 23.2v5.6C61.4 52.8 72.2 0 45.3 0zm0 0"></path>
+              </svg>
+              <div class="quote-light-header"><img class="quote-light-avatar" src="images/testimonials-3-57x57.jpg" alt="" width="57" height="57"/>
+                <div class="quote-light-meta">
+                  <h4 class="quote-light-cite">Kate Anderson</h4>
+                  <p class="quote-light-position">Decorator</p>
+                </div>
+              </div>
+              <div class="quote-light-main">
+                <p>I have always found your team to be extremely prompt and professional with all dealings I have had with them. You always keep me updated on the progress.</p>
+              </div>
+            </blockquote>
+            <blockquote class="quote-light">
+              <svg class="quote-light-mark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 61 53" width="61" height="53">
+                <defs>
+                  <path d="M0 0h61v53H0z"></path>
+                </defs>
+                <clippath>
+                  <use overflow="visible"></use>
+                </clippath>
+                <path d="M11.7 0C5.2 0 0 5.4 0 12s5.2 12 11.7 12C23.3 24 15.6 47.2 0 47.2v5.6C27.8 52.8 38.6 0 11.7 0zm33.6 0c-6.4 0-11.7 5.4-11.7 12s5.2 12 11.7 12c11.7 0 3.9 23.2-11.7 23.2v5.6C61.4 52.8 72.2 0 45.3 0zm0 0"></path>
+              </svg>
+              <div class="quote-light-header"><img class="quote-light-avatar" src="images/testimonials-4-57x57.jpg" alt="" width="57" height="57"/>
+                <div class="quote-light-meta">
+                  <h4 class="quote-light-cite">Peter Smith</h4>
+                  <p class="quote-light-position">Historian</p>
+                </div>
+              </div>
+              <div class="quote-light-main">
+                <p>Your advice and support from our initial meeting through liaising with current tenants and a polished marketing program all contributed to a great sale process.</p>
+              </div>
+            </blockquote>
+            <blockquote class="quote-light">
+              <svg class="quote-light-mark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 61 53" width="61" height="53">
+                <defs>
+                  <path d="M0 0h61v53H0z"></path>
+                </defs>
+                <clippath>
+                  <use overflow="visible"></use>
+                </clippath>
+                <path d="M11.7 0C5.2 0 0 5.4 0 12s5.2 12 11.7 12C23.3 24 15.6 47.2 0 47.2v5.6C27.8 52.8 38.6 0 11.7 0zm33.6 0c-6.4 0-11.7 5.4-11.7 12s5.2 12 11.7 12c11.7 0 3.9 23.2-11.7 23.2v5.6C61.4 52.8 72.2 0 45.3 0zm0 0"></path>
+              </svg>
+              <div class="quote-light-header"><img class="quote-light-avatar" src="images/testimonials-5-57x57.jpg" alt="" width="57" height="57"/>
+                <div class="quote-light-meta">
+                  <h4 class="quote-light-cite">Alice Lewis</h4>
+                  <p class="quote-light-position">Office Manager</p>
+                </div>
+              </div>
+              <div class="quote-light-main">
+                <p>You were quick to understand my needs and steer me in the right direction. The professionalism and warmth of your team made the process less stressful.</p>
+              </div>
+            </blockquote>
+            <blockquote class="quote-light">
+              <svg class="quote-light-mark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 61 53" width="61" height="53">
+                <defs>
+                  <path d="M0 0h61v53H0z"></path>
+                </defs>
+                <clippath>
+                  <use overflow="visible"></use>
+                </clippath>
+                <path d="M11.7 0C5.2 0 0 5.4 0 12s5.2 12 11.7 12C23.3 24 15.6 47.2 0 47.2v5.6C27.8 52.8 38.6 0 11.7 0zm33.6 0c-6.4 0-11.7 5.4-11.7 12s5.2 12 11.7 12c11.7 0 3.9 23.2-11.7 23.2v5.6C61.4 52.8 72.2 0 45.3 0zm0 0"></path>
+              </svg>
+              <div class="quote-light-header"><img class="quote-light-avatar" src="images/testimonials-6-57x57.jpg" alt="" width="57" height="57"/>
+                <div class="quote-light-meta">
+                  <h4 class="quote-light-cite">Dennis Brooks</h4>
+                  <p class="quote-light-position">Entrepreneur</p>
+                </div>
+              </div>
+              <div class="quote-light-main">
+                <p>Working with your team is a great experience. Expert guidance; great customer care; awesome marketing! Thank you for the great team effort!</p>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+      <!-- What People Say #1-->
+      <section class="section section-lg bg-gray-12">
+        <div class="container">
+          <h2 class="heading-decoration-1"><span class="heading-inner">What People Say #2</span></h2>
+          <div class="row row-30 justify-content-center justify-content-md-start mt-lg-60">
+            <div class="col-sm-10 col-md-6">
+              <!-- Quote Modern-->
+              <article class="quote-modern">
+                <div class="quote-modern-inner">
+                  <time class="quote-modern-time" datetime="2020">March 15, 2020</time>
+                  <div class="quote-modern-main">
+                    <p>I have always found your team to be extremely prompt and professional with all dealings I have had with them. You always keep me updated on the progress.</p>
+                  </div>
+                  <div class="quote-modern-meta-outer"><img class="quote-modern-avatar" src="images/testimonials-3-57x57.jpg" alt="" width="57" height="57"/>
+                    <div class="quote-modern-meta">
+                      <h4 class="quote-modern-cite">Kate Anderson</h4>
+                      <p class="quote-modern-position">Decorator</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-sm-10 col-md-6">
+              <!-- Quote Modern-->
+              <article class="quote-modern">
+                <div class="quote-modern-inner">
+                  <time class="quote-modern-time" datetime="2020">March 15, 2020</time>
+                  <div class="quote-modern-main">
+                    <p>We recently rented an apartment through your site, and have been looked after by James Thompson. He provided us with utmost support on every property issue.</p>
+                  </div>
+                  <div class="quote-modern-meta-outer"><img class="quote-modern-avatar" src="images/testimonials-4-57x57.jpg" alt="" width="57" height="57"/>
+                    <div class="quote-modern-meta">
+                      <h4 class="quote-modern-cite">Walter Williams</h4>
+                      <p class="quote-modern-position">Lifeguard</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+{% endblock %}

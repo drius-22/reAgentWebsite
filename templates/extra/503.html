@@ -1,0 +1,34 @@
+{% extends 'share/_base.html' %} 
+{% load static %} 
+{% load i18n %} 
+{% block extra_links %}
+    <link href="{% static 'css/home_style.css'%}?20090712" rel="stylesheet" type="text/css"> 
+{% endblock %} 
+{% block head_title %}Sandra Elizabeth{% endblock %} 
+{% block content %}
+<!-- Breadcrumbs-->
+      <section class="breadcrumbs-custom bg-image context-dark" data-opacity="48" style="background-image: url(images/breadcrumbs-bg-03-1922x291.jpg);">
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title">503</h2>
+        </div>
+      </section>
+      <section class="section-xs bg-white">
+        <div class="container">
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="active">503</li>
+          </ul>
+        </div>
+      </section>
+      <div class="divider-section"></div>
+      <!-- Section 404-->
+      <section class="section section-md bg-default text-center">
+        <div class="container">
+          <h2 class="text-spacing-20">Service is Temporarily Unavailable</h2>
+          <p class="heading-5 mw-650 block-center text-default">Sorry, we're offline right now to make our site even better. Please, come back later and check what we've been up to.</p><a class="button button-primary" href="index.html">Go to Homepage</a>
+        </div>
+      </section>
+
+
+{% endblock %}
