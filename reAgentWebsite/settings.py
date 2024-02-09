@@ -32,7 +32,7 @@ SECRET_KEY = env.str("SECRET_KEY") #'django-insecure-=m*=@5z+15@y=7!7v-58c)66d=h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=True)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','reAgentWebsite.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','re-agent-website-cd718fa6513e.herokuapp.com','reAgentWebsite.herokuapp.com']
 
 
 
