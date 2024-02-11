@@ -95,9 +95,14 @@ WSGI_APPLICATION = 'reAgentWebsite.wsgi.application'
 #     }
 # }
 
+
+
+
 DATABASES = {
     'default': env.dj_db_url("DATABASE_URL")
 }
+
+DATABASES['default'] = env.dj_db_url.config(conn_max_age=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

@@ -5,3 +5,14 @@ It works with the pyenv django-py3.11
 pyenv activate django-py3.11
 pip install -r requirements.txt 
 ``
+
+
+Notes:
+- Every time, i change the DB tables. I have to 'manage.py makemigrations',  commit and push to heroku. Once in heroku, I 'heroku run python manage.py migrate -a <app-name>' to create the changes in the tables. 
+- At the bottom of settings.py I have 
+``
+import django_heroku
+django_heroku.settings(locals())
+``
+which does a bunch of configuration, but if I want to test this locally, I have to comment it it out.
+- requirements.py has psycopg settings, but i think this is not needed anymore with django_heroku in place. 
