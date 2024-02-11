@@ -106,7 +106,9 @@ def show_properties(request, status):
 
 
         all_locations =location.objects.all() # can be joined in method with serch_properties
-        context['all_locations']= all_locations
+        # context['all_locations']= all_locations
+
+        context['all_locations']= None 
 
         # return render (request, 'buildings/properties_List.html', context)
         return render (request, 'buildings/properties-grid-2.html', context)
