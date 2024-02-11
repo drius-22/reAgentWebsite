@@ -181,3 +181,9 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # EMAIL_USE_TLS = False
 #EMAILL_USE_SSL = False
+
+
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())

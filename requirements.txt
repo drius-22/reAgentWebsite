@@ -71,3 +71,4 @@ urllib3==1.26.16
 websocket-client==1.6.0
 Werkzeug==2.3.6
 whitenoise==6.6.0
+django_heroku==0.3.1
