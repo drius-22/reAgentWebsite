@@ -1,3 +1,4 @@
+psycopg2-binary==2.9.9
 asgiref==3.7.2
 attrs==23.1.0
 aws-sam-translator==1.70.0
@@ -44,7 +45,7 @@ packaging==23.1
 pbr==5.11.1
 Pillow==8.3.1
 pluggy==1.2.0
-psycopg-binary==3.1.16
+psycopg2-binary==2.9.9
 pydantic==1.10.9
 pyrsistent==0.19.3
 pytest==7.3.2
@@ -71,4 +72,13 @@ urllib3==1.26.16
 websocket-client==1.6.0
 Werkzeug==2.3.6
 whitenoise==6.6.0
-django_heroku==0.3.1
+django_heroku==0.3.1 #  it is not working for me . asking for a dependencies that i already have but not recognize 
+
+
+# Uncomment these lines to use a Postgres database. Both are needed, since in production
+# (which uses Linux) we want to install from source, so that security updates from the
+# underlying Heroku stack image are picked up automatically, thanks to dynamic linking.
+# On other platforms/in development, the precompiled binary package is used instead, to
+# speed up installation and avoid errors from missing libraries/headers.
+#psycopg[c]; sys_platform == "linux"
+#psycopg[binary]; sys_platform != "linux"

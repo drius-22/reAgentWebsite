@@ -185,5 +185,6 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 # Configure Django App for Heroku.
+# asking me for a dependencies that I have already but not recognized. Disable for now
 import django_heroku
 django_heroku.settings(locals())
